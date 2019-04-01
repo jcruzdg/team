@@ -18,7 +18,7 @@ Instalar Sails.js v.1.0 de manera global.
 npm install sails -g
 ```
 
-**Más info en:
+**Más info en:**
 
 [Sails](https://sailsjs.com/get-started)
 
