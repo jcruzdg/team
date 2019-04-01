@@ -21,7 +21,7 @@ npm install sails -g
 **Más info en:**
 
 [Sails](https://sailsjs.com/get-started)
-![alt text](https://sailsjs.com/images/logos/sails-logo_dkBg_ltBlue.png)
+![alt text](https://sailsjs.com/images/logos/sails-logo_ltBg_ltBlue.png)
 
 ## Iniciar servidor
 
