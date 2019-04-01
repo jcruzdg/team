@@ -47,3 +47,4 @@ http://18.223.160.88:1337/v1/mutation
 - Para dicha solución se ha utilizado una base de datos mongodb para la persistencia de datos, gestionado con el ORM
  waterline.
 [waterline](http://waterlinejs.org/)
+![alt text](https://camo.githubusercontent.com/fda800f7fab38baffcf951761d8c1e97f3af6533/687474703a2f2f692e696d6775722e636f6d2f33587168364d7a2e706e67)
