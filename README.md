@@ -32,7 +32,7 @@ sails lift
 
 ## Ejecutando pruebas:
 
-La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **Http POST:
+La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **Http POST:**
 
 ```bash
 http://18.223.160.88:1337/v1/mutation
