@@ -4,17 +4,25 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-const isValidDnaArray = require('../shell/validateDnaArray');
+var isValidDnaArray = require('../shell/validateDnaArray');
+var getForbiddenResponse = (res) => {
+    return res.status(403).send('Forbidden');
+}
 
 module.exports = {
-    hasMutation: async function (req, res) {
+
+    getForbiddenResponse: getForbiddenResponse,
+
+    hasMutation: async (req, res) => {
         var dnaArray = req.param('dna');
 
-        if (!isValidDnaArray(dnaArray)) {
-            return res.status(403).send('Forbidden');
-        }
+        if (!isValidDnaArray(dnaArray)) return getForbiddenResponse(res);
 
-        return res.status(200).send({ message: 'All is ok' });
+        const hasMutation = await mutationService.hasMutation(dnaArray);
+        if (hasMutation) return res.status(200).send({ 'hasMutation': true });
+
+        return getForbiddenResponse(res);
     }
+
 };
 
