@@ -73,6 +73,8 @@ Para ejecutar las pruebas unitarias se utilizó la librería [jest](https://jest
 npm run lint -s & jest
 ````
 
+![alt text](https://jestjs.io/img/jest.png)
+
 ## Para evaluar el código "limpio" & best practice:
 
 Se utilizó [lint](https://eslint.org/)
