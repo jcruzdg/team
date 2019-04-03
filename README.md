@@ -1,7 +1,7 @@
 # teamChallenge
 
 Este proyecto intenta dar una solución a la prueba redactada para un "Fullstack developer".
-Ésta readme asume que ya tiene conocimientos básicos sobre **node.js** y su instalador de paquetes **npm**
+Este readme asume que ya tiene conocimientos básicos sobre **node.js** y su instalador de paquetes **npm**
 
 ## Instalación.
 
