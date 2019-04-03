@@ -34,7 +34,24 @@ sails lift
 ## Instalar MongoDb
 
 Para este ejericio se requiere isntalar e iniciar mongodb:
+
 Seguir las instrucciones de la [documentación oficial](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/).
+
+- al finalizar la instalación, se debe crear una base llamada "team". [Comparto éste link](https://www.quackit.com/mongodb/tutorial/mongodb_create_a_database.cfm), como guía.
+
+
+Por defecto al inicar mongodb, el puerto que escucha los cambios en el driver es: "27017".
+
+Sí se desea cambiar el puerto por defecto dentro del proyecto, navegar al archivo:
+
+.../config/datastores.js
+
+```bash
+default: {
+    adapter: 'sails-mongo',
+    url:'mongodb://localhost:27017/team'
+  },
+```
 
 ## Ejecutando pruebas:
 
