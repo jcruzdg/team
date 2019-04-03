@@ -84,6 +84,7 @@ npm run lint
 ````
 
 ## Features
+- Esta solución asume que se recibirán arreglos de la misma dimensión, n filas x n columnas.
 - Se debe considerar que la función evalua si dentro del arreglo que recibe sólo se contienen letras: A,T,C,G; en caso contrario, se determina que se trata de un arreglo incompatible y regresará una respuesta: **403 Forbidden.**
 - Se agregó el recurso REST "/stats" para visualizar los resultados estadísticos de las evaluaciones de ADN.
 - La solución está desplegada en un servidor Nginx, dentro de un EC2 de AWS, con un balanceador de carga denfinido para el crecimiento automático de los servidores en un plano horizontal de ser necesario.
