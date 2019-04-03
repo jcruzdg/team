@@ -31,6 +31,11 @@ Una vez instaladas las dependencias el proyecto, sólo requiere el siguiente com
 sails lift
 ```
 
+## Instalar MongoDb
+
+Para este ejericio se requiere isntalar e iniciar mongodb:
+Seguir las instrucciones de la ![documentación oficial](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/).
+
 ## Ejecutando pruebas:
 
 La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **Http POST:**
