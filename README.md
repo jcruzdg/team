@@ -18,9 +18,8 @@ Instalar Sails.js v.1.0 de manera global.
 npm install sails -g
 ```
 
-**Más info en:**
+**Más info en:** [Sails](https://sailsjs.com/get-started)
 
-[Sails](https://sailsjs.com/get-started)
 ![alt text](https://sailsjs.com/images/logos/sails-logo_ltBg_ltBlue.png)
 
 ## Iniciar servidor
@@ -55,15 +54,21 @@ default: {
 
 ## Ejecutando pruebas:
 
-La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **Http POST:**
+La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **HTTP POST:**
 
 ```bash
 http://18.223.160.88:1337/v1/mutation
 ```
 
+Para obtener las estadísticas de las mutaciones, se debe realizar una petición **HTTP GET**
+```bash
+http://18.223.160.88:1337/v1/stats
+````
+
 ## Features
 - Se debe considerar que la función evalua si dentro del arreglo que recibe sólo se contienen letras: A,T,C,G; en caso contrario, se determina que se trata de un arreglo incompatible y regresará una respuesta: **403 Forbidden.**
-- La solución está desplegada en un servidor Nginx, dentro de un EC2 de AWS, con un balanceador de carga denfinido para el crecimiento automático de los servidores en un plano horitzontal de ser necesario.
+- Se agregó el recurso REST "/stats" para visualizar los resultados estadísticos de las evaluaciones de ADN.
+- La solución está desplegada en un servidor Nginx, dentro de un EC2 de AWS, con un balanceador de carga denfinido para el crecimiento automático de los servidores en un plano horizontal de ser necesario.
 - La aplicación de Sails.js está inicializada con el paquete [pm2](http://pm2.keymetrics.io/) para asegurar que en caso de fallo de aplicación, éste proceso se volverá a ejecutar automáticamente.
 - Para dicha solución se ha utilizado una base de datos mongodb para la persistencia de datos, gestionado con el ORM
  [waterline](http://waterlinejs.org/).
