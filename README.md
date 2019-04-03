@@ -65,6 +65,24 @@ Para obtener las estadísticas de las mutaciones, se debe realizar una petición
 http://18.223.160.88:1337/v1/stats
 ````
 
+## Unit testing & coverage
+
+Para ejecutar las pruebas unitarias se utilizó la librería [jest](https://jestjs.io/).
+
+```bash
+npm run lint -s & jest
+````
+
+## Para evaluar el código "limpio" & best practice:
+
+Se utilizó [lint](https://eslint.org/)
+
+Para ejecutar: 
+
+```bash
+npm run lint
+````
+
 ## Features
 - Se debe considerar que la función evalua si dentro del arreglo que recibe sólo se contienen letras: A,T,C,G; en caso contrario, se determina que se trata de un arreglo incompatible y regresará una respuesta: **403 Forbidden.**
 - Se agregó el recurso REST "/stats" para visualizar los resultados estadísticos de las evaluaciones de ADN.
