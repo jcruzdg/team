@@ -1,6 +1,24 @@
+const definedLetters = ['A', 'G', 'C', 'T'];
 const fourRepeatedLettersRegex = /(A{4})|(T{4})|(C{4})|(G{4})/gmi;
 const areFourLettersMatch = (wordToEvaluate) => {
   return wordToEvaluate.match(fourRepeatedLettersRegex);
+};
+
+const isInRange = (dnaArray, x, y) => {
+  try {
+    return dnaArray[x][y];
+  } catch (exception) {
+    return '';
+  }
+};
+
+const getObliqueLetters = (dnaArray, indexString, indexLetter, level) => {
+  return {
+    upLeft: isInRange(dnaArray, indexString - level, indexLetter - level), //Arriba izquierda
+    upRigth: isInRange(dnaArray, indexString - level, indexLetter + level), //Arriba derecha
+    bottomLeft: isInRange(dnaArray, indexString + level, indexLetter - level), //Abajo izquierda
+    bottomRigth: isInRange(dnaArray, indexString + level, indexLetter + level) //Abajo izquierda
+  }
 };
 
 module.exports = {
@@ -37,22 +55,47 @@ module.exports = {
 
   obliqueSearch: async (dnaArray, count = 0) => {
 
-    // Buscará letterToFind en el elemento 0 de dnaArray
-    // recorre las letras de los elementos del dnaArray [A,A,G,C,T]
-    for (var i = 0; i < dnaArray.length; dnaArray++) {
-      let modifyIndex = i;
-      let dnaElement = dnaArray[i];
-      let letter = dnaElement[i];
-      let repeteadLetter = 0;
-      let downRigthLetter = dnaArray[modifyIndex++][modifyIndex++];
+    // TODO: SE debe iniciar la busqueda de letra por letra, para no repetir la búsqueda.
+    // Todas las A primero.
+    // 1. foreach de las letras disponibles [A, G, C, T], buscar A
+    // 2. iterar en el arreglo que contiene todos los strings: ["AGGACT","TAGTTC","CAAGTT","CAAAGG","ACCAGG","TTGTAC"]
+    // 3. buscar dentro de ese arreglo la letra que sea igual A, del punto 1.
+    // 4. Aplicar el algoritmo para buscar en diagonal.
+    dnaArray.forEach(function (dnaString, indexString) { // [A,B,C,D,E]
+      for (var indexLetter = 0; indexLetter < dnaString.length; indexLetter++) { // A
+        const dnaLetter = dnaString[indexLetter];
+        console.log('----------');
+        console.log('dnaString', dnaString);
+        console.log('continue', dnaLetter);
+        var level = 1;
+        var obliqueLetters = getObliqueLetters(dnaArray, indexString, indexLetter, level);
+        try {
 
-      if (letter === downRigthLetter) {
-        repeteadLetter++;
+          /*if (dnaLetter === obliqueLetters.upLeft) {
+            console.log('Sí, continúa.');
+            console.log('Toma index del elemento y continua preguntando hacia arriba izquierda el línea recta');
+          } else if (dnaLetter === obliqueLetters.upRigth) {
+            console.log('Toma index del elemento y continua preguntando hacia arriba derecha el línea recta');
+          } else if (dnaLetter === obliqueLetters.bottomLeft) {
+            console.log('Toma index del elemento y continua preguntando hacia abajo izquierda el línea recta');
+          } else if (dnaLetter === obliqueLetters.bottomRigth) {
+            console.log('Toma index del elemento y continua preguntando hacia abajo derecha el línea recta');*/
+          for (var i = 0; i < 3; i++) {
+            obliqueLetters = getObliqueLetters(dnaArray, indexString, indexLetter, level++);
+            if (dnaLetter === obliqueLetters.bottomRigth) {
+              console.log('continue...', obliqueLetters.bottomRigth);
+            }
+          }
+          //}
+        } catch (exception) {
+
+        }
       }
-      if (repeteadLetter === 4) {
-        count++;
+      count++;
+      if (count > 1) {
+        return count;
       }
-    }
+    });
 
     return count;
   }
