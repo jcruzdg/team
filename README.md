@@ -67,13 +67,17 @@ http://18.223.160.88:1337/v1/stats
 
 ## Unit testing & coverage
 
-Para ejecutar las pruebas unitarias se utilizó la librería [jest](https://jestjs.io/).
+Para ejecutar las pruebas unitarias se utilizó la librería [mocha](https://mochajs.org/).
 
 ```bash
-npm run lint -s & jest
+npm test
 ````
 
-![alt text](https://jestjs.io/img/jest.png)
+```bash
+npm run coverage
+````
+
+![alt text](https://camo.githubusercontent.com/af4bf83ab2ca125346740f9961345a24ec43b3a9/68747470733a2f2f636c6475702e636f6d2f78465646784f696f41552e737667)
 
 ## Para evaluar el código "limpio" & best practice:
 
