@@ -1,8 +1,9 @@
 module.exports = {
   attributes: {
-    id: {
-      type: 'number',
+    _id: {
+      type: 'string',
       unique: true,
+      autoIncrement: true,
       columnName: 'DnaId'
     },
     dna: {

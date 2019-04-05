@@ -9,13 +9,17 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "async": "2.0.1",
+    "chai": "^4.2.0",
     "grunt": "1.0.1",
-    "jest": "^24.7.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "sails": "^1.0.2",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
-    "sails-mongo": "^1.0.1"
+    "sails-mongo": "^1.0.1",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
@@ -23,18 +27,9 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "test": "npm run lint -s & jest",
+    "test": "node ./node_modules/mocha/bin/mocha api/test/*.js",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "coverage": "npm run lint -s & jest --coverage"
-  },
-  "jest": {
-    "testURL":"http://localhost",
-    "verbose": true,
-    "collectCoverageFrom": [
-      "**/api/**/*.{js}",
-      "!**/node_modules/**",
-      "!**/api/models/**"
-    ]
+    "coverage": "npm run lint -s & nyc --reporter=text node ./node_modules/mocha/bin/mocha api/test/*.js"
   },
   "main": "app.js",
   "repository": {

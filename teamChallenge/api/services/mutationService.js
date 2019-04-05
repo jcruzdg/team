@@ -17,7 +17,7 @@ module.exports = {
     } catch (exception) {
       var error = new Error();
       error.title = 'We have some errors';
-      error.message = exception;
+      error.message = JSON.stringify(exception);
       error.count = 0;
       throw error;
     }

@@ -1,4 +1,3 @@
-
 const arrayDnaIsValid = require('../shell/specificLetters');
 
 module.exports = (dnaArray) => {
