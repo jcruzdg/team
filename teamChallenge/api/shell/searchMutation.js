@@ -56,11 +56,11 @@ module.exports = {
   obliqueSearch: async (dnaArray, count = 0) => {
 
     // TODO: SE debe iniciar la busqueda de letra por letra, para no repetir la búsqueda.
-    // Todas las A primero.
     // 1. foreach de las letras disponibles [A, G, C, T], buscar A
     // 2. iterar en el arreglo que contiene todos los strings: ["AGGACT","TAGTTC","CAAGTT","CAAAGG","ACCAGG","TTGTAC"]
     // 3. buscar dentro de ese arreglo la letra que sea igual A, del punto 1.
-    // 4. Aplicar el algoritmo para buscar en diagonal.
+    // 4. Aplicar el algoritmo para buscar en diagonal. ( arribaDerecha, arribaIzquierda, abajoIzquierda,  abajoDerecha) por 4 veces.
+    
     dnaArray.forEach(function (dnaString, indexString) { // [A,B,C,D,E]
       for (var indexLetter = 0; indexLetter < dnaString.length; indexLetter++) { // A
         const dnaLetter = dnaString[indexLetter];
