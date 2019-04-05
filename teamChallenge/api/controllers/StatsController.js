@@ -6,12 +6,10 @@
  */
 
 module.exports = {
+
   getStats: async (req, res) => {
     const stats = await statsService.getMutationsRatio();
     return res.status(200).send(stats);
-  },
-
-  getStatuses: (req, res) => {
-    return res.status(200).send({ message: 'success' });
   }
+  
 };

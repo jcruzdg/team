@@ -3,9 +3,9 @@ require('./bootstrap.test');
 
 describe('MutationController', function () {
   describe('#getStats', function () {
-    it('debería regresar un status 200'), function (done) {
+    it('debería regresar un status 200', function (done) {
       supertest.agent(sails.hooks.http.app)
-        .get('/statuses')
+        .get('/v1/stats')
         .set('Accept', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
@@ -16,7 +16,7 @@ describe('MutationController', function () {
             result.body.should.be.an('object');
             done();
           }
-        })
-    }
+        });
+    });
   });
 });

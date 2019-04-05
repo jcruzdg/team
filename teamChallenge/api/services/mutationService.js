@@ -1,5 +1,11 @@
-var searchMutation = require('../shell/searchMutation');
-
+const searchMutation = require('../shell/searchMutation');
+const customException = (exception) => {
+  var error = new Error();
+  error.title = 'We have some errors';
+  error.message = JSON.stringify(exception);
+  error.count = 0;
+  return error;
+}
 module.exports = {
   hasMutation: async (dnaArray) => {
     try {
@@ -15,11 +21,7 @@ module.exports = {
 
       return await searchMutation.obliqueSearch(dnaArray, count);
     } catch (exception) {
-      var error = new Error();
-      error.title = 'We have some errors';
-      error.message = JSON.stringify(exception);
-      error.count = 0;
-      throw error;
+      throw customException(exception);
     }
   },
 
@@ -29,7 +31,7 @@ module.exports = {
       hasMutation: hasMutation
     };
     Dna.create(dnaModel).catch((error) => {
-      console.error('Error in ORM', error);
+      throw customException(error);
     });
   }
 };

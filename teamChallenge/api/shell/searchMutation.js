@@ -1,4 +1,3 @@
-const specificLetters = ['A', 'T', 'C', 'G'];
 const fourRepeatedLettersRegex = /(A{4})|(T{4})|(C{4})|(G{4})/gmi;
 const areFourLettersMatch = (wordToEvaluate) => {
   return wordToEvaluate.match(fourRepeatedLettersRegex);

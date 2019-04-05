@@ -1,24 +1,33 @@
+require('./bootstrap.test');
 const assert = require('chai').assert;
-const oneMutationsArray = ["AACAAC",
-  "AAGAGG",
-  "ATTGTT",
-  "AAGGGA",
-  "TCCAAG",
-  "TTGTAC"]
-const twoMutationsArray = ["AAAAAC",
-  "AAAAGG",
-  "ATTGTT",
-  "AAGGGA",
-  "TCCAAG",
-  "TTGTAC"]
+const WE_HAVE_PROBLEMS = 'We have some errors';
+const oneMutationsArray = ['AACAAC',
+  'AAGAGG',
+  'ATTGTT',
+  'AAGGGA',
+  'TCCAAG',
+  'TTGTAC'];
+const twoMutationsArray = ['AAAAAC',
+  'AAAAGG',
+  'ATTGTT',
+  'AAGGGA',
+  'TCCAAG',
+  'TTGTAC'];
 
 describe('#Mutation Service', function () {
-  it('debería regresar un resultado = 1', async function () {
-    const result = await mutationService.hasMutation(oneMutationsArray)
+  it('#hasMutation debería regresar un resultado = 1', async function () {
+    const result = await mutationService.hasMutation(oneMutationsArray);
     assert.equal(result, 1);
   });
-  it('debe regresar un resultado = 2', async function () {
-    const result = await mutationService.hasMutation(twoMutationsArray)
+  it('#hasMutation debe regresar un resultado = 2', async function () {
+    const result = await mutationService.hasMutation(twoMutationsArray);
     assert.equal(result, 2);
+  });
+  it('#hasMutation debe regresar una excepción', async function () {
+    try {
+      await mutationService.hasMutation(123456);
+    } catch (exception) {
+      assert.equal(exception.title, WE_HAVE_PROBLEMS);
+    }
   });
 });
