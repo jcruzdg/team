@@ -2,10 +2,13 @@ const searchMutation = require('../shell/searchMutation');
 const customException = (exception) => {
   var error = new Error();
   error.title = 'We have some errors';
-  error.message = JSON.stringify(exception);
+  error.message = exception.message;
+  error.message = exception.stack;
   error.count = 0;
+  console.error(error);
   return error;
-}
+};
+
 module.exports = {
   hasMutation: async (dnaArray) => {
     try {
@@ -19,7 +22,7 @@ module.exports = {
         return count;
       }
 
-      return await searchMutation.obliqueSearch(dnaArray, count);
+      return await searchMutation.obliqueSearchTwo(dnaArray, count);
     } catch (exception) {
       throw customException(exception);
     }
