@@ -3,6 +3,14 @@
 Este proyecto intenta dar una solución a la prueba redactada para un "Fullstack developer".
 Este readme asume que ya tiene conocimientos básicos sobre **node.js** y su instalador de paquetes **npm**
 
+## Clonar repositorio
+
+En una consola cmd de windows o una terminal de linux agregar el siguiente comando:
+
+```bash
+git clone https://github.com/jcruzdg/team.git
+```
+
 ## Instalación.
 
 Una vez clonado el proyecto, navegar a la carpeta raíz del proyecto c:/team/teamChallenge
