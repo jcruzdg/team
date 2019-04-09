@@ -4,15 +4,14 @@ var _ = require('lodash');
 global.chai = require('chai');
 global.should = chai.should();
 
-before(function (done) {
+before(function(done) {
 
   // Increase the Mocha timeout so that Sails has enough time to lift.
   this.timeout(7000);
 
   sails.lift({
     log: {
-      level: 'verbose'
-      //level: 'silent'
+      level: 'silent'
     },
     hooks: {
       grunt: false
@@ -28,15 +27,15 @@ before(function (done) {
       }
     }
 
-  }, function (err, server) {
+  }, (err) => {
     if (err) {
-      returndone(err)
-    };
-    done(err, sails);
+      return returndone(err);
+    }
+    return done(err, sails);
   });
 });
 
-after(function (done) {
+after((done) => {
   if (sails && _.isFunction(sails.lower)) {
     sails.lower(done);
   }

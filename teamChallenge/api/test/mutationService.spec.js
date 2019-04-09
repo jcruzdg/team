@@ -16,23 +16,27 @@ const twoMutationsArray = ['AAAAAC',
 
 const obliqueMutation = [
   'AGGACT',
-  'TAGTTC',
-  'CAAGTT',
-  'CAAAGG',
+  'TATTTC',
+  'CAATTT',
+  'CATAGG',
   'ACCAGG',
   'TTGTAC'
 ];
 
-describe('#Mutation Service', function () {
-  it('#hasMutation debería regresar un resultado = 2', async function () {
+describe('#Mutation Service', () => {
+  it('#hasMutation debería regresar un resultado = 2', async () => {
     const result = await mutationService.hasMutation(oneMutationsArray);
     assert.equal(result, 2);
   });
-  it('#hasMutation debe regresar un resultado = 2', async function () {
+  it('#hasMutation debe regresar un resultado = 2', async () => {
     const result = await mutationService.hasMutation(twoMutationsArray);
     assert.equal(result, 2);
   });
-  it('#hasMutation debe regresar una excepción', async function () {
+  it('#hasMutation debe regresar un resultado = 2', async () => {
+    const result = await mutationService.hasMutation(obliqueMutation);
+    assert.equal(result, 2);
+  });
+  it('#hasMutation debe regresar una excepción', async () => {
     try {
       await mutationService.hasMutation(123456);
     } catch (exception) {

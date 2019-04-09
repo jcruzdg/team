@@ -8,18 +8,18 @@ const dnaArray = ['AACAAC',
   'TCCAAG',
   'TTGTAC'];
 
-describe('#validateDnaArray', function () {
-  it('#validateDnaArray Debe regresar un booleano false, debido a que se trata de un string', function () {
+describe('#validateDnaArray', () => {
+  it('#validateDnaArray Debe regresar un booleano false, debido a que se trata de un string', () => {
     const isaDnaArray = validateDnaArray(isNotAnArray);
     assert.equal(isaDnaArray, false);
   });
 
-  it('#validateDnaArray Debe regresar un booleano false, debido a que se trata de un string', function () {
+  it('#validateDnaArray Debe regresar un booleano false, debido a que se trata de un string', () => {
     const isaDnaArray = validateDnaArray(isNotAnArray);
     assert.equal(isaDnaArray, false);
   });
 
-  it('#validateDnaArray Debe regresar un booleano true, debido a que se trata de un array de ADN válido.', function () {
+  it('#validateDnaArray Debe regresar un booleano true, debido a que se trata de un array de ADN válido.', () => {
     const isaDnaArray = validateDnaArray(dnaArray);
     assert.equal(isaDnaArray, true);
   });

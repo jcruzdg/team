@@ -11,5 +11,4 @@ module.exports = {
     const stats = await statsService.getMutationsRatio();
     return res.status(200).send(stats);
   }
-  
 };

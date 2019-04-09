@@ -1,7 +1,6 @@
 const TWO_LETTER = 1;
 const THREE_LETTER = 2;
 const FOUR_LETTER = 3;
-const permitedLetters = ['A', 'G', 'C', 'T'];
 const fourRepeatedLettersRegex = /(A{4})|(T{4})|(C{4})|(G{4})/gmi;
 
 const areFourLettersMatch = (wordToEvaluate) => {
@@ -9,7 +8,7 @@ const areFourLettersMatch = (wordToEvaluate) => {
 };
 
 const obliqueObjectHasMutation = (obliqueObject, count) => {
-  Object.keys(obliqueObject).forEach(function (direction) {
+  Object.keys(obliqueObject).forEach((direction) => {
     if (areFourLettersMatch(obliqueObject[direction])) {
       count++;
     }
@@ -25,6 +24,7 @@ const getObliqueUpRigth = (dnaArray, x, y) => {
       dnaArray[x - FOUR_LETTER][y + FOUR_LETTER];
     return obliqueUpRigth;
   } catch (exception) {
+    console.log(exception.message);
     return '';
   }
 };
@@ -37,6 +37,7 @@ const getObliqueUpLeft = (dnaArray, x, y) => {
       dnaArray[x - FOUR_LETTER][y - FOUR_LETTER];
     return obliqueUpLeft;
   } catch (exception) {
+    console.log(exception.message);
     return '';
   }
 };
@@ -49,6 +50,7 @@ const getObliqueBottomLeft = (dnaArray, x, y) => {
       dnaArray[x + FOUR_LETTER][y - FOUR_LETTER];
     return obliqueBottomLeft;
   } catch (exception) {
+    console.log(exception.message);
     return '';
   }
 };
@@ -61,6 +63,7 @@ const getObliqueBottomRigth = (dnaArray, x, y) => {
       dnaArray[x + FOUR_LETTER][y + FOUR_LETTER];
     return obliqueBottomRigth;
   } catch (exception) {
+    console.log(exception.message);
     return '';
   }
 };

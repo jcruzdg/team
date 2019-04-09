@@ -1,10 +1,10 @@
 const supertest = require('supertest');
 require('./bootstrap.test');
 
-describe('#MutationController', function () {
+describe('#MutationController', () => {
 
-  describe('#hasMutation', function () {
-    it('debería regresar un status 200', function (done) {
+  describe('#hasMutation', () => {
+    it('debería regresar un status 200', (done) => {
 
       supertest.agent(sails.hooks.http.app)
         .post('/v1/mutation')
@@ -19,17 +19,17 @@ describe('#MutationController', function () {
             'TTGTAC']
         })
         .expect(200)
-        .end(function (error, result) {
+        .end((error, result) => {
           if (error) {
-            done(error);
+            return done(error);
           } else {
             result.body.should.be.an('object');
-            done();
+            return done();
           }
         });
     });
 
-    it('debería regresar un status 403 ya que contiene una letra fuera de las permitidas.', function (done) {
+    it('debería regresar un status 403 ya que contiene una letra fuera de las permitidas.', (done) => {
       supertest.agent(sails.hooks.http.app)
         .post('/v1/mutation')
         .set('Content-Type', 'application/json')
@@ -43,16 +43,16 @@ describe('#MutationController', function () {
             'TTGTAC']
         })
         .expect(403)
-        .end(function (error, result) {
+        .end((error) => {
           if (error) {
-            done(error);
+            return done(error);
           } else {
-            done();
+            return done();
           }
         });
     });
 
-    it('debería regresar un status 403 ya que contiene sólo una mutación.', function (done) {
+    it('debería regresar un status 403 ya que contiene sólo una mutación.', (done) => {
       supertest.agent(sails.hooks.http.app)
         .post('/v1/mutation')
         .set('Content-Type', 'application/json')
@@ -66,14 +66,13 @@ describe('#MutationController', function () {
             'TTGTAC']
         })
         .expect(403)
-        .end(function (error, result) {
+        .end((error) => {
           if (error) {
-            done(error);
+            return done(error);
           } else {
-            done();
+            return done();
           }
         });
     });
-
   });
 });
