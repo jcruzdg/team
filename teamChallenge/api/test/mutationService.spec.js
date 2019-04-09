@@ -14,10 +14,19 @@ const twoMutationsArray = ['AAAAAC',
   'TCCAAG',
   'TTGTAC'];
 
+const obliqueMutation = [
+  'AGGACT',
+  'TAGTTC',
+  'CAAGTT',
+  'CAAAGG',
+  'ACCAGG',
+  'TTGTAC'
+];
+
 describe('#Mutation Service', function () {
-  it('#hasMutation debería regresar un resultado = 1', async function () {
+  it('#hasMutation debería regresar un resultado = 2', async function () {
     const result = await mutationService.hasMutation(oneMutationsArray);
-    assert.equal(result, 1);
+    assert.equal(result, 2);
   });
   it('#hasMutation debe regresar un resultado = 2', async function () {
     const result = await mutationService.hasMutation(twoMutationsArray);

@@ -1,27 +1,56 @@
-const MAX_LENGTH = 4;
-const MAX_REPEAT = 3;
 const TWO_LETTER = 1;
 const THREE_LETTER = 2;
 const FOUR_LETTER = 3;
-const BOTTOM_RIGTH = 'bottomRigth';
 const permitedLetters = ['A', 'G', 'C', 'T'];
 const fourRepeatedLettersRegex = /(A{4})|(T{4})|(C{4})|(G{4})/gmi;
 
-const tryToFindOblique = async (dnaLetter, dnaArray, indexString, indexLetter, level, direction, count, word) => {
-  for (var i = 0; i < MAX_REPEAT; i++) {
-    obliqueLetters = getObliqueLetters(dnaArray, indexString, indexLetter, level++);
-    if (dnaLetter === obliqueLetters[direction]) {
-      word = word + dnaLetter;
-    }
-    if (word.length === MAX_LENGTH) {
+const areFourLettersMatch = (wordToEvaluate) => {
+  return wordToEvaluate.match(fourRepeatedLettersRegex);
+};
+
+const obliqueObjectHasMutation = (obliqueObject, count) => {
+  Object.keys(obliqueObject).forEach(function (direction) {
+    if (areFourLettersMatch(obliqueObject[direction])) {
       count++;
     }
-  }
+  });
   return count;
 };
 
-const areFourLettersMatch = (wordToEvaluate) => {
-  return wordToEvaluate.match(fourRepeatedLettersRegex);
+const getObliqueUpRigth = (dnaArray, x, y) => {
+  try {
+    const obliqueUpRigth = dnaArray[x][y] +
+      dnaArray[x - TWO_LETTER][y + TWO_LETTER] +
+      dnaArray[x - THREE_LETTER][y + THREE_LETTER] +
+      dnaArray[x - FOUR_LETTER][y + FOUR_LETTER];
+    return obliqueUpRigth;
+  } catch (exception) {
+    return '';
+  }
+};
+
+const getObliqueUpLeft = (dnaArray, x, y) => {
+  try {
+    const obliqueUpLeft = dnaArray[x][y] +
+      dnaArray[x - TWO_LETTER][y - TWO_LETTER] +
+      dnaArray[x - THREE_LETTER][y - THREE_LETTER] +
+      dnaArray[x - FOUR_LETTER][y - FOUR_LETTER];
+    return obliqueUpLeft;
+  } catch (exception) {
+    return '';
+  }
+};
+
+const getObliqueBottomLeft = (dnaArray, x, y) => {
+  try {
+    const obliqueBottomLeft = dnaArray[x][y] +
+      dnaArray[x + TWO_LETTER][y - TWO_LETTER] +
+      dnaArray[x + THREE_LETTER][y - THREE_LETTER] +
+      dnaArray[x + FOUR_LETTER][y - FOUR_LETTER];
+    return obliqueBottomLeft;
+  } catch (exception) {
+    return '';
+  }
 };
 
 const getObliqueBottomRigth = (dnaArray, x, y) => {
@@ -30,17 +59,18 @@ const getObliqueBottomRigth = (dnaArray, x, y) => {
       dnaArray[x + TWO_LETTER][y + TWO_LETTER] +
       dnaArray[x + THREE_LETTER][y + THREE_LETTER] +
       dnaArray[x + FOUR_LETTER][y + FOUR_LETTER];
-    console.log('obliqueBottomRigth', obliqueBottomRigth);
     return obliqueBottomRigth;
   } catch (exception) {
-    console.error('getObliqueBottomRigth', exception);
     return '';
   }
 };
 
 const getObliqueLettersTwo = (dnaArray, dnaLetterIndex, dnaRowLettersIndex) => {
   const obliqueResults = {
-    bottomRigth: getObliqueBottomRigth(dnaArray, dnaLetterIndex, dnaRowLettersIndex)
+    bottomRigth: getObliqueBottomRigth(dnaArray, dnaLetterIndex, dnaRowLettersIndex),
+    bottomLeft: getObliqueBottomLeft(dnaArray, dnaLetterIndex, dnaRowLettersIndex),
+    upRigth: getObliqueUpRigth(dnaArray, dnaLetterIndex, dnaRowLettersIndex),
+    upLeft: getObliqueUpLeft(dnaArray, dnaLetterIndex, dnaRowLettersIndex),
   };
   return obliqueResults;
 };
@@ -77,33 +107,24 @@ module.exports = {
     return counter;
   },
 
-  obliqueSearchTwo: async (dnaArray, count = 0) => {
-    // 1. for para recorrer letras disponibles [A, G, C, T], busca A primero y 
-    // así evitar repetir la búsqueda del mismo elemento.
-    for (var permitedLetterIndex = 0;
-      permitedLetterIndex < permitedLetters.length;
-      permitedLetterIndex++) {
+  obliqueSearch: async (dnaArray, count = 0) => {
+    for (var dnaRowLettersIndex = 0; dnaRowLettersIndex <
+      dnaArray.length; dnaRowLettersIndex++) {
+      const dnaRowLetters = dnaArray[dnaRowLettersIndex];
+      var obliqueResults = {};
+      for (var dnaLetterIndex = 0; dnaLetterIndex <
+        dnaRowLetters.length; dnaLetterIndex++) {
 
-      const permitedLetter = permitedLetters[permitedLetterIndex];
-      // 2. iterar en el arreglo que contiene todos los strings: ["AGGACT","TAGTTC","CAAGTT","CAAAGG","ACCAGG","TTGTAC"]
-      for (var dnaRowLettersIndex = 0; dnaRowLettersIndex < dnaArray.length; dnaRowLettersIndex++) {
-        const dnaRowLetters = dnaArray[dnaRowLettersIndex];
-        var obliqueResults = {};
-        // 3. buscar dentro de ese arreglo la letra que sea igual A, del punto 1.
-        for (var dnaLetterIndex = 0; dnaLetterIndex < dnaRowLetters.length; dnaLetterIndex++) {
-          const dnaLetter = dnaRowLetters[dnaLetterIndex];
+        obliqueResults = getObliqueLettersTwo(dnaArray, dnaLetterIndex, dnaRowLettersIndex);
 
-          // 4. Sí el primer elemento de la fila es igual al primer elemento de las
-          // letras permitidas, comienza a buscar en diagonal en 4 direcciones.
-          if (dnaLetter === permitedLetter) {
-            obliqueResults = getObliqueLettersTwo(dnaArray, dnaLetterIndex, dnaRowLettersIndex);
-          }
-          if (!_.isEmpty(obliqueResults)) {
-            // 4. Valida sí alguna de las 4 direcciones contiene 4 letras iguales.
-            console.log('Ya casi');
+        if (!_.isEmpty(obliqueResults)) {
+          count = obliqueObjectHasMutation(obliqueResults, count);
+          if (count > 1) {
+            return count;
           }
         }
       }
     }
+    return count;
   }
 };

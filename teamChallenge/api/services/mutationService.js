@@ -22,7 +22,7 @@ module.exports = {
         return count;
       }
 
-      return await searchMutation.obliqueSearchTwo(dnaArray, count);
+      return await searchMutation.obliqueSearch(dnaArray, count);
     } catch (exception) {
       throw customException(exception);
     }
