@@ -57,12 +57,24 @@ default: {
 La función a evaluar se puede acceder por medio de la siguiente ruta con un verbo **HTTP POST:**
 
 ```bash
-http://18.223.160.88:1337/v1/mutation
+{
+"dna": ["AGGACT",
+		"TATTTC",
+		"CAATTT",
+		"CATAGG",
+		"ACCAGG",
+		"TTGTAC"]
+}
+```
+
+```bash
+http://jlcdche-alb-team-199181831.us-east-2.elb.amazonaws.com/v1/mutation
 ```
 
 Para obtener las estadísticas de las mutaciones, se debe realizar una petición **HTTP GET**
+
 ```bash
-http://18.223.160.88:1337/v1/stats
+http://jlcdche-alb-team-199181831.us-east-2.elb.amazonaws.com/v1/stats
 ````
 
 ## Unit testing & coverage
