@@ -40,7 +40,7 @@ sails lift
 
 ## Instalar MongoDb
 
-Para este ejericio se requiere isntalar e iniciar mongodb:
+Para este ejericio se requiere instalar e iniciar mongodb:
 
 Seguir las instrucciones de la [documentación oficial](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/).
 
@@ -49,7 +49,7 @@ Seguir las instrucciones de la [documentación oficial](https://docs.mongodb.com
 
 Por defecto al inicar mongodb, el puerto que escucha los cambios en el driver es: "27017".
 
-Sí se desea cambiar el puerto por defecto dentro del proyecto, navegar al archivo:
+Si se desea cambiar el puerto por defecto dentro del proyecto, navegar al archivo:
 
 .../config/datastores.js
 
